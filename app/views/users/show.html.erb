@@ -1,0 +1,104 @@
+<head>
+<style>
+	.col-md-3{
+		padding-left: 70px;
+		background-color: #0FB493;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	.col-md-3 button{
+		margin-top: 30px;
+	}
+	#dash_logo{
+		margin-top: -20px;
+		margin-bottom: 30px;
+	}
+</style>
+</head>
+
+
+<!-- Add a event -->
+  <div class="col-md-3">
+ 
+
+  <form action='/events' method='post'>
+  		 <div id="dash_logo">
+<%= image_tag("noworries_logos-04.png", size:"290x150", :alt => "laptop") %>
+</div>	
+
+
+		<h4>Add a event</h4>
+		<input name='authenticity_token' value="<%=form_authenticity_token %>" type="hidden">
+		<input type='text' name='event' id='event'>
+
+		<h4>Expected time completion:</h4>
+		<input type="radio" name="completion" value="5s"> 5 sec (testing only)<br>
+		<input type="radio" name="completion" value="1hr"> 1 hour<br>
+		<input type="radio" name="completion" value="2hr"> 2 hour<br>
+		<input type="radio" name="completion" value="3hr"> 3 hour<br>
+		<input type="radio" name="completion" value="4hr"> 4 hour<br>
+
+		<h4>Comments:</h4>
+		<textarea rows="4" cols="30" name="comments"></textarea>
+
+		<h4>Person you want to notify:</h4>
+		<input type='text' name='contact_name' id='contact_name'>
+
+		<h4>Contact's phone number:</h4>
+		<input type='text' name='contact_ph' id='contact_ph'>
+
+		<h4>Contact's email:</h4>
+		<input type='email' name='contact_email' id='contact_email'>
+		
+		<div>
+		<button type="submit" class="btn btn-primary">Create your task!</button>
+		<p>(Your timer starts once created)</p>
+		</div>
+	</form>
+</div>
+
+
+
+
+<!-- Display tasks here -->
+<div class="col-md-9">
+<div>
+<h2>Hello, <%= @user.name %></h2>
+<a href="/sessions" data-method="delete">Log Out</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Events</th>
+        <th>Comment</th>
+        <th>Day Created</th>
+        <th>Should be done in</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+			<% @user_events.each do |i| %>
+			<tr>
+				<td><%= i.event %></td>
+				<td><%= i.comment %></td>
+				<td><%= i.created_at %></td>
+				<td><%= i.completion %> hr</td>
+				<td><form action="/events/<%= i.id %>" method="post" role="form">
+					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+					<input name="_method" value="delete" type="hidden">
+					<input name="task" value="<%= i.event %>" type="hidden">
+					<button type="submit" class="btn btn-danger">Delete</button>
+				</form>
+			</td>
+			<% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+

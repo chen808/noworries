@@ -1,0 +1,149 @@
+<style>
+  #mainImage{
+    background-color: #0FB493;
+    background-image: url("images/noworries_logos-04.png");
+    background-repeat: no-repeat;
+    background-size: 500px 300px;
+    background-position: center top;
+    width: 100%;
+    height: 600px;
+  }
+
+  #signInContainer{
+    background-color: #0FB493 ;
+    height: 1000px;
+  }
+
+  .col-md-12{
+    background-color: #152737;
+    width: 100%;
+    height: 580px;
+    margin-top: -5px;
+    margin-bottom: 50px;
+  }
+
+  .box{
+    width: 400px;
+    display:inline-block;
+    margin: 70px 0px 0px 100px;
+  }
+  .box h4{
+    width: 300px;
+    color: #0FB493;
+    text-align: center;
+  }
+  h3{
+    margin-left: -80px;
+    color: white;
+    text-align: center;
+  }
+  #info h3{
+    position: absolute;
+    padding: 0;
+    margin-top: 350px;
+    margin: 350px 620px 0px 620px;
+  }
+  .col-md-4{
+    margin-top: 50px;
+    margin-left: 220px;
+  }
+</style>
+
+
+<div id="mainImage">
+<div id="info">
+  <h3>Leave your worries with someone else :)</h3>
+</div>
+
+</div>
+
+  
+ 
+
+ <div class="col-md-12">
+
+  <div class="box" >
+    <%= image_tag("001.png", :alt => "laptop") %>
+    <h4>Simply set a new event and when you expect to be done</h4>
+  </div>
+
+
+  <div class="box">
+    <%= image_tag("002.png", :alt => "laptop") %>
+    <h4>Enjoy your event without worrying if someone knows where you are</h4>
+  </div>
+
+
+  <div class="box">
+    <%= image_tag("003.png", :alt => "laptop") %>
+    <h4>Should something happen, be assured we'll notify your contact!</h4>
+  </div>
+
+</div>
+
+
+
+<div id="signInContainer">
+  <div class="col-md-3">
+  </div>
+
+  <div class="col-md-3">
+  <!-- Sign In Form -->
+  <h4>New Member Sign In</h4>
+  <form action="/sessions" method="post" role="form">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+    <p>
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" placeholder="Enter Name">
+    </p>
+
+    <p>
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name="email" placeholder="Enter email">
+    </p>
+
+    <p>
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Enter password">
+    </p>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+  </div>
+
+
+
+
+  <div class="col-md-3">
+  <!-- Existing User Sign in -->
+  <h4>Members Sign in</h4>
+  <form action="/users" method="post" role="form">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+    <p>
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name="email" placeholder="Enter email">
+    </p>
+
+    <p>
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Enter password">
+    </p>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+  </div>
+
+  <div class="col-md-3">
+  </div>
+
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <p class="error"><%= e %></p>
+  <% end %>
+<% end %>
+
+
+</div>
+
