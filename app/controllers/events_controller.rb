@@ -26,7 +26,7 @@ class EventsController < ApplicationController
 		session[:event] = params[:event]
 		@event = params[:event]
 		@contact_name = params[:contact_name]
-		session[:contact_email] = params[:contact_email]
+		@contact_email = params[:contact_email]
 	end
 
 
@@ -58,7 +58,7 @@ class EventsController < ApplicationController
 			@message = @client.account.messages.create({ :to => "+1"+"#{number}",
 														:from => "+18316090982",
 														:body => "#{message}" })
-			UserMailer.welcome_email(session[:contact_email], @contact_name, @event, current_user.name).deliver_now
+			UserMailer.welcome_email(@contact_email, @contact_name, @event, current_user.name).deliver_now
 		end
 		
 		redirect_to :back 
