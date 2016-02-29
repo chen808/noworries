@@ -21,6 +21,8 @@ gem 'rufus-scheduler'
 
 gem 'figaro'
 
+gem 'geocoder'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

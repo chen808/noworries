@@ -5,6 +5,9 @@ class CreateEvents < ActiveRecord::Migration
       t.string :event
       t.text :comment
       t.integer :completion
+      t.string :address
+      t.float :latitude
+      t.float :longitude
       t.string :contact
       t.string :ph
       t.string :email

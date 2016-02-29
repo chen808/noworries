@@ -5,8 +5,11 @@
 
 <body>
 <p>Hello <%= @contact_name %></p>
-<p>We at No Worries are concerned that <%= @user %> has not checked in yet. We want to provide you with the info you may need should <%= @user %> not check in.</p>
+<p>We at No Worries are concerned that <%= @user %> has not checked in yet. We wanted to provide you with the info you may need should <%= @user %> not check in.</p>
 <p>Last known event was : <%= @event %></p>
+
+<p>The map</p>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@latitude}%2C#{@longitude}" %>
 
 </body>
 

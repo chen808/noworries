@@ -22,10 +22,10 @@
  
 
   <form action='/events' method='post'>
-  		 <div id="dash_logo">
-<%= image_tag("noworries_logos-04.png", size:"290x150", :alt => "laptop") %>
-</div>	
 
+		<div id="dash_logo">
+			<%= image_tag("noworries_logos-04.png", size:"290x150", :alt => "laptop") %>
+		</div>	
 
 		<h4>Add a event</h4>
 		<input name='authenticity_token' value="<%=form_authenticity_token %>" type="hidden">
@@ -45,10 +45,20 @@
 		<input type='text' name='contact_name' id='contact_name'>
 
 		<h4>Contact's phone number:</h4>
-		<input type='text' name='contact_ph' id='contact_ph'>
+		<p>(ex: 1234567891)</p>
+		<input type='text' name='contact_ph' id='contact_ph' placeholder:'ex: 1234567891'>
 
 		<h4>Contact's email:</h4>
 		<input type='email' name='contact_email' id='contact_email'>
+
+
+		<!-- Attempting to add geocoder here -->
+		<h4>Event address:</h4>
+		<input type='text' name='address' id='address'>
+
+
+
+
 		
 		<div>
 		<button type="submit" class="btn btn-primary">Create your task!</button>
@@ -74,6 +84,7 @@
         <th>Comment</th>
         <th>Day Created</th>
         <th>Should be done in</th>
+        <th>Map</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -84,14 +95,20 @@
 				<td><%= i.comment %></td>
 				<td><%= i.created_at %></td>
 				<td><%= i.completion %> hr</td>
+				<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{i.latitude}%2C#{i.longitude}" %></td>
+
+				
 				<td><form action="/events/<%= i.id %>" method="post" role="form">
 					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 					<input name="_method" value="delete" type="hidden">
 					<input name="task" value="<%= i.event %>" type="hidden">
 					<button type="submit" class="btn btn-danger">Delete</button>
+				</td>
+				
 				</form>
 			</td>
 			<% end %>
+
     </tbody>
   </table>
 </div>
