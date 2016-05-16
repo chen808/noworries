@@ -12,6 +12,7 @@
 	#dash_logo{
 		margin-top: -20px;
 		margin-bottom: 30px;
+		margin-left: 20px;
 	}
 </style>
 </head>
@@ -19,50 +20,46 @@
 
 <!-- Add a event -->
   <div class="col-md-3">
- 
-
-  <form action='/events' method='post'>
-
+  	<!-- Once the submit button is clicked, goes to route.rb /events -->
+	<form action='/events' method='post'>
+		<!-- No Worries Logo -->
 		<div id="dash_logo">
-			<%= image_tag("noworries_logos-04.png", size:"290x150", :alt => "laptop") %>
+			<%= image_tag("noworries_logos-04.png", size:"200x100", :alt => "laptop") %>
 		</div>	
-
+		<!-- Add Event -->
 		<h4>Add a event</h4>
+		<!-- Authenticity Token for form -->
 		<input name='authenticity_token' value="<%=form_authenticity_token %>" type="hidden">
+		<!-- Name of Event -->
 		<input type='text' name='event' id='event'>
-
+		<!-- Expected time completed -->
 		<h4>Expected time completion:</h4>
-		<input type="radio" name="completion" value="5s"> 5 sec (testing only)<br>
-		<input type="radio" name="completion" value="1hr"> 1 hour<br>
-		<input type="radio" name="completion" value="2hr"> 2 hour<br>
-		<input type="radio" name="completion" value="3hr"> 3 hour<br>
-		<input type="radio" name="completion" value="4hr"> 4 hour<br>
-
+			<!-- Time completion options -->
+			<input type="radio" name="completion" value="5s"> 5 sec (testing only)<br>
+			<input type="radio" name="completion" value="1hr"> 1 hour<br>
+			<input type="radio" name="completion" value="2hr"> 2 hour<br>
+			<input type="radio" name="completion" value="3hr"> 3 hour<br>
+			<input type="radio" name="completion" value="4hr"> 4 hour<br>
+		<!-- Comments -->
 		<h4>Comments:</h4>
 		<textarea rows="4" cols="30" name="comments"></textarea>
-
+		<!-- Contact name -->
 		<h4>Person you want to notify:</h4>
 		<input type='text' name='contact_name' id='contact_name'>
-
+		<!-- Contact Phone Number -->
 		<h4>Contact's phone number:</h4>
 		<p>(ex: 1234567891)</p>
 		<input type='text' name='contact_ph' id='contact_ph' placeholder:'ex: 1234567891'>
-
+		<!-- Contact Email -->
 		<h4>Contact's email:</h4>
 		<input type='email' name='contact_email' id='contact_email'>
-
-
 		<!-- Attempting to add geocoder here -->
 		<h4>Event address:</h4>
 		<input type='text' name='address' id='address'>
-
-
-
-
-		
+		<!-- Timer starts once button is created -->
 		<div>
-		<button type="submit" class="btn btn-primary">Create your task!</button>
-		<p>(Your timer starts once created)</p>
+			<button type="submit" class="btn btn-primary">Create your task!</button>
+			<p>(Your timer starts once created)</p>
 		</div>
 	</form>
 </div>
@@ -72,45 +69,46 @@
 
 <!-- Display tasks here -->
 <div class="col-md-9">
-<div>
-<h2>Hello, <%= @user.name %></h2>
-<a href="/sessions" data-method="delete">Log Out</a>
-</div>
+	<div>
+		<h2>Hello, <%= @user.name %></h2>
+		<a href="/sessions" data-method="delete">Log Out</a>
+	</div>
 
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Events</th>
-        <th>Comment</th>
-        <th>Day Created</th>
-        <th>Should be done in</th>
-        <th>Map</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-			<% @user_events.each do |i| %>
-			<tr>
-				<td><%= i.event %></td>
-				<td><%= i.comment %></td>
-				<td><%= i.created_at %></td>
-				<td><%= i.completion %> hr</td>
-				<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{i.latitude}%2C#{i.longitude}" %></td>
+	<table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>Events</th>
+	    <th>Comment</th>
+	    <th>Day Created</th>
+	    <th>Should be done in</th>
+	    <th>Map</th>
+	    <th>Action</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% @user_events.each do |i| %>
+		<tr>
+			<td><%= i.event %></td>
+			<td><%= i.comment %></td>
+			<td><%= i.created_at.strftime("%b %d %Y")%></td>
+			<td><%= i.completion %> hr(s)</td>
+			<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{i.latitude}%2C#{i.longitude}" %></td>
 
-				
-				<td><form action="/events/<%= i.id %>" method="post" role="form">
-					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-					<input name="_method" value="delete" type="hidden">
-					<input name="task" value="<%= i.event %>" type="hidden">
-					<button type="submit" class="btn btn-danger">Delete</button>
-				</td>
-				
+			
+			<td>
+				<form action="/events/<%= i.id %>" method="post" role="form">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<input name="_method" value="delete" type="hidden">
+				<input name="task" value="<%= i.event %>" type="hidden">
+				<button type="submit" class="btn btn-danger">Delete</button>
 				</form>
 			</td>
-			<% end %>
-
-    </tbody>
-  </table>
+			
+			
+		</td>
+		<% end %>
+	</tbody>
+	</table>
 </div>
 
 

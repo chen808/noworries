@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 
 	# adding the following for Geocoder
-	#attr_accessible :address, :latitude, :longitude
+	# attr_accessible :address, :latitude, :longitude
 
 	belongs_to :user
 

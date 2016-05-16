@@ -6,26 +6,25 @@
     background-size: 500px 300px;
     background-position: center top;
     width: 100%;
-    height: 600px;
+    height: 480px;
   }
 
   #signInContainer{
-    background-color: #0FB493 ;
-    height: 1000px;
+    background-color: #0FB493;
+    height: 900px;
   }
 
   .col-md-12{
     background-color: #152737;
     width: 100%;
-    height: 580px;
+    /*height: 350px;*/
     margin-top: -5px;
-    margin-bottom: 50px;
+    padding-bottom: 40px;
   }
 
   .box{
-    width: 400px;
     display:inline-block;
-    margin: 70px 0px 0px 100px;
+    margin: 40px 20px 0px 20px;
   }
   .box h4{
     width: 300px;
@@ -37,22 +36,22 @@
     color: white;
     text-align: center;
   }
-  #info h3{
+  #info h5{
     position: absolute;
     padding: 0;
     margin-top: 350px;
-    margin: 350px 620px 0px 620px;
+    margin: 350px 470px 0px 470px;
+    font-size: 1.2em;
   }
-  .col-md-4{
+  .col-md-3{
     margin-top: 50px;
-    margin-left: 220px;
   }
 </style>
 
 
 <div id="mainImage">
 <div id="info">
-  <h3>Leave your worries with someone else :)</h3>
+  <h5>Leave your worries with someone else :)</h5>
 </div>
 
 </div>
@@ -60,22 +59,22 @@
   
  
 
- <div class="col-md-12">
+ <div class="col-md-12" align="center">
 
   <div class="box" >
-    <%= image_tag("001.png", :alt => "laptop") %>
+    <%= image_tag("001.png", size:"200x200", :alt => "laptop") %>
     <h4>Simply set a new event and when you expect to be done</h4>
   </div>
 
 
   <div class="box">
-    <%= image_tag("002.png", :alt => "laptop") %>
+    <%= image_tag("002.png", size:"200x200", :alt => "laptop") %>
     <h4>Enjoy your event without worrying if someone knows where you are</h4>
   </div>
 
 
   <div class="box">
-    <%= image_tag("003.png", :alt => "laptop") %>
+    <%= image_tag("003.png", size:"200x200", :alt => "laptop") %>
     <h4>Should something happen, be assured we'll notify your contact!</h4>
   </div>
 
@@ -84,6 +83,7 @@
 
 
 <div id="signInContainer">
+
   <div class="col-md-3">
   </div>
 
@@ -134,15 +134,16 @@
   </form>
   </div>
 
+
   <div class="col-md-3">
   </div>
 
 
-<% if flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p class="error"><%= e %></p>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+      <p class="error"><%= e %></p>
+    <% end %>
   <% end %>
-<% end %>
 
 
 </div>
