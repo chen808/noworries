@@ -4,22 +4,21 @@
     background-image: url("images/noworries_logos-04.png");
     background-repeat: no-repeat;
     background-size: 500px 300px;
-    background-position: center top;
+    background-position: center;
     width: 100%;
-    height: 480px;
+    height: 500px;
   }
 
   #signInContainer{
     background-color: #0FB493;
-    height: 900px;
+    height: 500px;
   }
 
-  .col-md-12{
+  #explaination_container{
     background-color: #152737;
     width: 100%;
-    /*height: 350px;*/
-    margin-top: -5px;
-    padding-bottom: 40px;
+    height: 450px;
+    padding-top: 50px;
   }
 
   .box{
@@ -40,7 +39,6 @@
     position: absolute;
     padding: 0;
     margin-top: 350px;
-    margin: 350px 470px 0px 470px;
     font-size: 1.2em;
   }
   .col-md-3{
@@ -49,17 +47,12 @@
 </style>
 
 
-<div id="mainImage">
-<div id="info">
-  <h5>Leave your worries with someone else :)</h5>
-</div>
-
-</div>
+<div id="mainImage"></div>
 
   
  
 
- <div class="col-md-12" align="center">
+ <div id='explaination_container' align="center">
 
   <div class="box" >
     <%= image_tag("001.png", size:"200x200", :alt => "laptop") %>
@@ -115,23 +108,23 @@
 
 
   <div class="col-md-3">
-  <!-- Existing User Sign in -->
-  <h4>Members Sign in</h4>
-  <form action="/users" method="post" role="form">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <!-- Existing User Sign in -->
+    <h4>Members Sign in</h4>
+    <form action="/users" method="post" role="form">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 
-    <p>
-      <label for="email">Email</label>
-      <input type="text" class="form-control" name="email" placeholder="Enter email">
-    </p>
+      <p>
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" placeholder="Enter email">
+      </p>
 
-    <p>
-      <label for="password">Password</label>
-      <input type="password" class="form-control" name="password" placeholder="Enter password">
-    </p>
+      <p>
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter password">
+      </p>
 
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
   </div>
 
 
